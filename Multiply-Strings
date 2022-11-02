@@ -1,0 +1,76 @@
+class Solution {
+    public String multiply(String num1, String num2) {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("1", 1);
+        map.put("2", 2);
+        map.put("3", 3);
+        map.put("4", 4);
+        map.put("5", 5);
+        map.put("6", 6); 
+        map.put("7", 7);
+        map.put("8", 8);
+        map.put("9", 9);
+        map.put("0", 0);
+        
+        Map<Integer, String> map2 = new HashMap<>();
+        map2.put(1, "1");
+        map2.put(2, "2");
+        map2.put(3, "3");
+        map2.put(4, "4");
+        map2.put(5, "5");
+        map2.put(6, "6");
+        map2.put(7, "7");
+        map2.put(8, "8");
+        map2.put(9, "9");
+        map2.put(0, "0");
+        
+        String[] num1ar = num1.split("");
+        int [] num1arInt = new int[num1ar.length];
+        int number;
+        for (int i = 0;i<num1ar.length; i++)
+        {
+            number = map.get(num1ar[i]);
+            num1arInt[i] = number;
+        }
+        String[] num2ar = num2.split("");
+        int [] num2arInt = new int[num2ar.length];
+   
+        for (int i = 0;i<num2ar.length; i++)
+        {
+            number = map.get(num2ar[i]);
+            num2arInt[i] = number;
+        }
+        int product = 0;
+        int productTotal = 0;
+        int k = num2arInt.length+num1arInt.length;
+        int size = k;
+        int[][] productSplit = new int[k][num2arInt.length];
+        int z = 0;
+        k = 0;
+        int buf = 0;
+        for (int i = num2arInt.length-1;i==0;i--){
+            for (int j = num1arInt.length-1;j==0;j--){
+                productSplit[k][z] = (num1arInt[j]*num2arInt[i])%10 + buf;
+                buf =((num1arInt[i]*num2arInt[j]) - productSplit[k][z])/10;
+                z++;}
+            k++;
+            z = k;
+            }
+        int[] output = new int[size];
+        if (num2arInt.length>1){
+        for(int i = 0; i<num1ar.length; i++){
+            output[i] = productSplit[i][0] + productSplit[i][1];
+        }}
+        else{
+            for(int i = 0; i<num1ar.length; i++){
+            output[i] = productSplit[i][0];
+                }
+        }
+      
+        String output1 = "";
+        for (int i = 0;i<size-1;i++){
+            output1 = output1 + map2.get(output[i]);
+        }
+        return output1;
+}
+}
