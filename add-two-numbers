@@ -1,0 +1,51 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+        ListNode l3 = new ListNode(){}; //new node that will hold the solution
+        
+        ListNode l4 = l3;  //saving pointer to the head of the new node
+        int sum;
+        int buf = 0;
+        while(l1 != null){
+            sum = (l1.val + l2.val + buf); //adding numbers from l1 and l2
+                if(sum>9){   //determining if there is a carryover
+                    sum = sum%10;
+                    buf = 1;    
+                }
+            else {buf = 0;} 
+             l3.val = sum;  //ading sum the the node
+             
+             if ((l1.next == null)&&(l2.next == null)){ //creating a new node if needed 
+                 if (buf != 0){  //checking if there is a carryover to add to the end
+                 l3.next = new ListNode(1);
+                     break;
+            }}
+           if ((l1.next != null)&&(l2.next == null)){ //case if l2 is shorter than l1, l2 is padded with 0
+            l2.next = new ListNode(0);   
+           }
+            if ((l2.next != null)&&(l1.next == null)){ //case if l1 is shorter than l2, l1 is padded with 0
+            l1.next = new ListNode(0);   
+           }
+            if (l1.next != null) //adding new empty node to the result list
+                {l3.next = new ListNode();}
+           
+            l3 = l3.next; //moving to next node
+            l1 = l1.next; //moving to next node
+            l2 = l2.next; //moving to next node
+           
+            }
+                                
+    
+        return l4;
+    }
+}
