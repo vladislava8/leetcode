@@ -1,18 +1,20 @@
 class Solution {
     public boolean isIsomorphic(String s, String t) {
-        String newS = "";
-        Map<Character, Character> map1 = new HashMap();
-        Map<Character, Character> map2 = new HashMap();
+        String newS = ""; //new buffer string
+        //creating maps
+        Map<Character, Character> map1 = new HashMap(); //s staring map
+        Map<Character, Character> map2 = new HashMap(); //t string map
+        //for each character in string s, chekcing if it's in the map, if not, adding it to both maps
         for (int i = 0; i<s.length();i++){
-            if ((!(map1.containsKey(s.charAt(i))))&&(!(map2.containsKey(t.charAt(i))))){
-                map1.put(s.charAt(i), t.charAt(i));
-                map2.put(t.charAt(i), s.charAt(i));
+            if ((!(map1.containsKey(s.charAt(i))))&&(!(map2.containsKey(t.charAt(i))))){ //if current character of each string are not in the maps
+                map1.put(s.charAt(i), t.charAt(i)); //add s string character to the map
+                map2.put(t.charAt(i), s.charAt(i)); //add t string character to the map
                 }
              
-            newS = newS +  map1.get(s.charAt(i));
+            newS = newS +  map1.get(s.charAt(i)); //fetch mapping for current charcter and add it to the buffer string
             }
             
-            if (newS.equals(t))
+            if (newS.equals(t))  //compare buffer string to the t string
              return true;
             else return false;
         }               
