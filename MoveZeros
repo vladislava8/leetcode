@@ -1,0 +1,12 @@
+public void moveZeroes(int[] nums) {
+        int j = 0;            //second counter
+        for(int i = 0; i<nums.length; i++){
+            if(nums[i]!=0){     //if element is not zero, record it in the array at the index j
+                nums[j] = nums[i];
+                j++;      //increase j only for non-zero elements
+            }
+        }
+            for (int k = j;k<nums.length;k++){    //from the end of non-zero subarray thru the end of this array add zeros
+                nums[k] = 0;
+            }
+        }
