@@ -1,0 +1,18 @@
+public class Solution {
+    public double Average(int[] salary) {
+        int min = salary[0];
+        int max = 0;
+        double sum = 0.0f;
+        double len = salary.Length;
+        for (int i = 0;i<len;i++){  ///iterate thru array to find minimum, maximum and total sum
+            if (salary[i]>max){
+                max = salary[i];
+            }
+            else if (salary[i]<min){
+                min = salary[i];
+            }
+            sum = sum + salary[i];
+        }
+        return (sum-min-max)/(len-2); //return median without min and max
+    }
+}
