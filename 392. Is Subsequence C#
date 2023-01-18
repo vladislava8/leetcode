@@ -1,0 +1,17 @@
+public class Solution {
+    public bool IsSubsequence(string s, string t) {
+        int j = 0;                        //index of t where the character from s was found 
+        for (int i = 0;i<s.Length;i++){
+            if (t.IndexOf(s[i]) == -1){     //if character from s is not found in t 
+                return false;
+            }
+            else {                      //if character from s is found in t, remove part of t up to (inclusive) of character from s
+                j = t.IndexOf(s[i]);
+                StringBuilder sb = new StringBuilder(t);
+                sb.Remove(0,j+1);
+                t = sb.ToString();
+            }
+        }
+        return true;
+    }
+}
