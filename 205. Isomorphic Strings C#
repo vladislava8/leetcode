@@ -1,0 +1,23 @@
+public class Solution {
+    public bool IsIsomorphic(string s, string t) {
+        Dictionary<Char, Char> map = new Dictionary<Char, Char>();    //dictionary to hold mappings
+        for (int i = 0;i<s.Length;i++){     //iterating thru String s
+            if (map.ContainsKey(s[i])){     //if dictionary contains character from s
+                if (t[i] != map[s[i]]){     //and if it doesn't correspond the previous mapping
+                    return false;          
+                }
+            }
+            else                              //if dictionary doesn't contain current character form s
+            {
+                foreach(var kvp in map)       //and current character from String t hasn't been mapped before
+                    {
+                        if (kvp.Value == t[i]){
+                        return false;
+                    }
+                }
+                map.Add(s[i],t[i]);         //add new key-value pair
+            }
+        }
+        return true;
+    }
+}
