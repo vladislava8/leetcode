@@ -1,0 +1,51 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     public int val;
+ *     public ListNode next;
+ *     public ListNode(int val=0, ListNode next=null) {
+ *         this.val = val;
+ *         this.next = next;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode MergeTwoLists(ListNode list1, ListNode list2) {
+        if ((list1 == null)&&(list2 == null)){      //if both lists are null return null
+            return null;
+        }
+        else if (list1 == null){                    //if list1 is null return list2
+            return list2;
+        }
+        else if (list2 == null){                  //if list2 is null return list1
+            return list1;
+        }
+        ListNode list3 = new ListNode();        //new list to hold merged list1 and list2
+        ListNode list4 = list3;                 //saving reference to the head
+         while(list1 != null){                  //while list1 is not empty
+            if(list1.val<list2.val){            //compare values of list1 and list2
+                list3.val = list1.val;          //if list 1 value is less then of list2 -> list3 to hold that value
+                if(list1.next != null){         //move to the net value of the list1 if it exists
+                list1 = list1.next;
+                }
+                else{                           //if next value doesn't exist, the ethe rest of list3 to be filled with list2 values
+                    list3.next = list2;
+                    return list4;               //return pointer to list3 head
+                }
+            }
+            else{
+                list3.val = list2.val;
+                if(list2.next != null){
+                list2 = list2.next;
+                }
+                else{
+                    list3.next = list1;
+                    return list4;
+                }
+            }
+            list3.next = new ListNode();        //create new node for list3
+            list3 = list3.next;                 //move to the next node of list3
+    }
+        return list4;
+    }
+}
