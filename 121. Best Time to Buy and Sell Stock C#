@@ -1,0 +1,20 @@
+public class Solution {
+    public int MaxProfit(int[] prices) {
+        int min = prices[0];              
+        int max = 0;
+        int j = 0;
+        int profit = 0;
+        int MaxProfit = 0;
+        for(int i = 0;i<prices.Length;i++){
+            if(prices[i]<min){              ///finding local minimum
+                min = prices[i];            //sliding window to the new local minimum
+                j = i;
+            }
+            profit = prices[i] -min;        //caluclating current minimum
+            if(profit>MaxProfit){           //recording Maximum Profit
+                MaxProfit = profit;
+            }
+        }
+        return MaxProfit;
+    }
+}
