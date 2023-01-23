@@ -1,0 +1,22 @@
+public class Solution {
+    public int LongestPalindrome(string s) {
+        Dictionary<Char, int> map = new Dictionary<Char, int>();  //Dictionary holding letter from string s as a key and value as an number
+        int PalLen = 0;       //Length of the palindrome counter
+        for (int i = 0; i<s.Length; i++){
+        if (map.ContainsKey(s[i])){           //if char exists in the dictionary, increase it by 1
+                map[s[i]] = map[s[i]]+1;
+                if(map[s[i]]==2){           //when letter is seen twice, record it in the palindrome counter and zero it's value in the dictionary
+                    PalLen = PalLen + 2;    
+                    map[s[i]] = 0;
+                }          
+                }
+        else  {
+            map.Add(s[i],1);        //if value doesn't exist in the Dictionary, then add 
+        }      
+        }
+        if (PalLen<s.Length){       //checking if there is an extra letter that can be used in the middle of the palindrome
+            PalLen = PalLen+1;
+        }
+        return PalLen;
+    }
+}
