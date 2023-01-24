@@ -1,0 +1,42 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left;
+ *     public TreeNode right;
+ *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
+ *         this.val = val;
+ *         this.left = left;
+ *         this.right = right;
+ *     }
+ * }
+ */
+public class Solution {
+    public IList<IList<int>> LevelOrder(TreeNode root) {
+        List<IList<int>> listT = new List<IList<int>>();      //list of lists of integers for return 
+        if (root == null){return listT;}                      //empty root case
+        int count = 0;                                        //length of queue before adding children nodes
+        Queue<TreeNode> qList = new Queue<TreeNode>();        //new queue to store the nodess
+        List<int> list2 = new List<int>();                    //new list to store integers
+        qList.Enqueue(root);                                  //add root to queue
+        while(qList.Count>0){                                 //while queue is not empty (will be empty when both left and right don't have children)
+            count = qList.Count();                            //count of items in the current queue
+            list2 = new List<int>();                          //new list for current level               
+            for (int i = 0;i<count;i++)                       //for all nodes in the current queue
+                {
+                root = qList.Dequeue();                       //current root == top of the queue /remove the top node
+                list2.Add(root.val);                          //add root value to this level's list
+                if (root.left != null)                        //add left child(if exists) to the queue
+                {
+                qList.Enqueue(root.left);
+                 }
+                if(root.right != null)                        //add right child(if exists) to the queue
+                {
+                qList.Enqueue(root.right);
+                }
+            }
+            listT.Add(list2);                                 //add current list to the list of the lists
+        }
+        return listT;
+    }
+}
